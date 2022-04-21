@@ -52,5 +52,30 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../dev/apache-tomcat-10.0.20/lib/jsp-api.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../dev/apache-tomcat-10.0.20/lib/servlet-api.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../dev/apache-tomcat-10.0.20-src/java" />
+          <root url="file://$MODULE_DIR$/../../../dev/apache-tomcat-10.0.20-src/modules/jdbc-pool/src/main/java" />
+          <root url="file://$MODULE_DIR$/../../../dev/apache-tomcat-10.0.20-src/modules/jdbc-pool/src/test/java" />
+          <root url="file://$MODULE_DIR$/../../../dev/apache-tomcat-10.0.20-src/test" />
+          <root url="file://$MODULE_DIR$/../../../dev/apache-tomcat-10.0.20-src/webapps/docs/appdev/sample/src" />
+          <root url="file://$MODULE_DIR$/../../../dev/apache-tomcat-10.0.20-src/webapps/examples/WEB-INF/classes" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
