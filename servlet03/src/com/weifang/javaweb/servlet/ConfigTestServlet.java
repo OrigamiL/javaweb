@@ -4,6 +4,8 @@ import jakarta.servlet.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.Iterator;
 
 /**
  * ServletConfig
@@ -11,6 +13,13 @@ import java.io.PrintWriter;
  * 2.谁去实现了这个接口？ org.apache.catalina.core.StandardWrapperFacade  Tomcat服务器实现了这个接口
  *      如果把tomcat服务器换成jetty服务器输出ServletConfig对象的时候，输出结果不一定一样，包名类名可能和Tomcat不一样，
  *      但是他们都实现了ServletConfig这个规范。
+ * 3.一个Servlet对象中有一个ServletConfig对象（一对一）
+ * 4.Tomcat服务器（WEB服务器）创建了ServletConfig对象，创建Servlet对象的时候同时创建了ServletConfig对象
+ * 5.ServletConfig接口：
+ *      ServletConfig：Servlet对象的配置信息对象
+ * 6.ServletConfig对象中包装的信息是什么：
+ *      web.xml文件中<servlet></servlet>标签中的配置信息
+ *   Tomcat解析web.xml文件，将web.xml文件中<servlet></servlet>标签中的配置信息自动包装到ServletConfig对象中
  */
 
 public class ConfigTestServlet extends GenericServlet {
@@ -35,5 +44,27 @@ public class ConfigTestServlet extends GenericServlet {
         PrintWriter out = res.getWriter();
         ServletConfig config = this.getServletConfig();//获取ServletConfig对象
         out.print("ServletConfig对象是"+config);//一个servlet对象关联一个servletConfig对象
+        out.print("<br>");
+        out.print("<br>");
+        out.print("<servlet-name>"+config.getServletName()+"</servlet-name>");
+        out.print("<br>");
+        out.print("<br>");
+        //通过ServletConfig对象中的两个方法可以获得web.xml中的初始化参数配置信息
+        //getInitParameterNames() 获取所有的初始化参数的name
+        Enumeration<String> enumeration = config.getInitParameterNames();
+        while(enumeration.hasMoreElements()) {
+            out.print("<br>");
+            String parameterName = enumeration.nextElement();
+            //getInitParameter() 通过初始化参数的name获取value
+            String parameterVal = config.getInitParameter(parameterName);
+            out.print(parameterName + "=" + parameterVal);
+            out.print("<br>");
+        }
+        Enumeration<String> names = this.getInitParameterNames();
+        while(names.hasMoreElements()){
+            String name = names.nextElement();
+            String value = this.getInitParameter(name);
+            out.print(name+"="+value+"<br>");
+        }
     }
 }

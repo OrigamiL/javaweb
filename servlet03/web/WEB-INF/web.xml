@@ -6,6 +6,23 @@
     <servlet>
         <servlet-name>configTest</servlet-name>
         <servlet-class>com.weifang.javaweb.servlet.ConfigTestServlet</servlet-class>
+        <!--这里可以配置Servlet对象的初始化信息-->
+        <init-param>
+            <param-name>driver</param-name>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:mysql://localhost:3306/zhezhi?serverTimezone=UTC&amp;userSSL=false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>user</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>294753qQ</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>configTest</servlet-name>
