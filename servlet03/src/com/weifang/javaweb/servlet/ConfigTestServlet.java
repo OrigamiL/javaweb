@@ -20,6 +20,13 @@ import java.util.Iterator;
  * 6.ServletConfig对象中包装的信息是什么：
  *      web.xml文件中<servlet></servlet>标签中的配置信息
  *   Tomcat解析web.xml文件，将web.xml文件中<servlet></servlet>标签中的配置信息自动包装到ServletConfig对象中
+ * 7.<servlet></servlet>标签中的<init-param></init-param>是初始化参数，这个初始化参数信息会自动被Tomcat封装到ServletConfig对象当中
+ * 8.ServletConfig当中有四个方法：
+ *      1.public String getInitParameter(String name);
+ *      2.public Enumeration<T> getInitParameterNames();
+ *      3.public ServletContext getServletContext();
+ *      4.public String getServletName();
+ *      以上四个方法也可以使用this来调用。GenericServlet实现了ServletConfig接口，自己编写的Servlet继承了GenericServlet
  */
 
 public class ConfigTestServlet extends GenericServlet {
@@ -60,11 +67,16 @@ public class ConfigTestServlet extends GenericServlet {
             out.print(parameterName + "=" + parameterVal);
             out.print("<br>");
         }
-        Enumeration<String> names = this.getInitParameterNames();
+        Enumeration<String> names = this.getInitParameterNames();//GenericServlet已经实现了ServletConfig接口
         while(names.hasMoreElements()){
             String name = names.nextElement();
             String value = this.getInitParameter(name);
             out.print(name+"="+value+"<br>");
         }
+        //怎么获取ServletContext对象
+        //第一种：通过ServletConfig对象获取ServletContext
+        ServletContext application = config.getServletContext();
+        //第二种：通过this也可以获得ServletContext
+        ServletContext application2 = this.getServletContext();
     }
 }

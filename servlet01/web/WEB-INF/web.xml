@@ -11,4 +11,30 @@
         <servlet-name>studentServlet</servlet-name>
         <url-pattern>/servlet/student</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>studentServlet2</servlet-name>
+        <servlet-class>com.weifang.javaweb.servlet.StudentServlet2</servlet-class>
+        <init-param>
+            <param-name>driver</param-name>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:mysql://localhost:3306/zhezhi?serverTimezone=UTC&amp;userSSL=false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>user</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>294753qQ</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>studentServlet2</servlet-name>
+        <url-pattern>/servlet/student2</url-pattern>
+    </servlet-mapping>
 </web-app>

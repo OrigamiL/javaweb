@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+    <!--全局的配置写在<context-param></context-param>中
+        以下的配置信息属于全局配置信息045
+    -->
+    <context-param>
+        <param-name>pageSize</param-name>
+        <param-value>10</param-value>
+    </context-param>
+    <context-param>
+        <param-name>startIndex</param-name>
+        <param-value>0</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>aServlet</servlet-name>
+        <servlet-class>com.weifang.javaweb.servlet.AServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>aServlet</servlet-name>
+        <url-pattern>/a</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>bServlet</servlet-name>
+        <servlet-class>com.weifang.javaweb.servlet.BServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>bServlet</servlet-name>
+        <url-pattern>/b</url-pattern>
+    </servlet-mapping>
+</web-app>
