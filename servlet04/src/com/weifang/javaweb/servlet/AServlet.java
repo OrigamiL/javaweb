@@ -43,6 +43,21 @@ import java.util.Enumeration;
  *      存  public void setAttribute(String name, Object value); //map.put(k,v)
  *      取  public Object getAttribute(String name);  //map.get(k);
  *      删  public void removeAttribute(String name);  //map.remove(k);
+ * 7.目前接触到的缓存机制：
+ *      堆内存当中的字符串常量池    "abc"先在字符串常量池中查找，如果有，直接拿来用。如果没有则新建，然后再放入字符串常量池
+ *      堆内存当中的整数型常量池     [-128~127]一共256个Integer类型的引用，放在整数型常量池中
+ *      连接池(Connection Cache)   Java语言连接数据库的java.sql.Connection对象  JVM是一个进程，MySql是一个进程 进程之间建立连接时  提前先创建好N个
+ *                      Connection对象，将连接对象放到一个集合当中，我们把这个放有Connection对象的集合称为连接池，每一次用户连接的时候不需要再新建连接对象，
+ *                      省去了新建的环节，直接从连接池中获取连接对象，大大提升访问效率
+ *  *                  连接池  ：
+ *                              最小连接数  最大连接数  连接池可以提高用户访问效率，当然也可以保证数据库的安全性
+ *      线程池       Tomcat服务器本身就是支持多线程的
+ *                  Tomcat服务器是在用户发送一次请求，就新建一个thread对象吗？ 当然不是，实际上是在Tomcat服务器启动的时候，会先创建N个Thread对象，然后
+ *                  将线程对象放到集合当中，称为线程池，用户发送请求过来之后，需要有一个对应的线程来来处理这个请求，这个时候线程对象就会直接从线程池中拿，
+ *                  效率比较高  所以所有的WEB服务器，或者应用服务器，都是支持多线程的，都有线程机制
+ *      redis       非关系型数据库 NoSQL
+ *      ServletContext
+ *
  *
  *
  */
@@ -68,5 +83,7 @@ public class AServlet extends GenericServlet {
         out.print(application.getRealPath("index.jsp"));//获取文件的绝对路径
         out.print("<br>");
         out.print(application.getAttribute("userObj1"));
+        out.print("<br>");
+        out.print(Thread.currentThread().getName());
     }
 }

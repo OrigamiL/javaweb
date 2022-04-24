@@ -31,5 +31,7 @@ public class BServlet extends GenericServlet {
             out.print("name:"+user1.getName()+"<br>");
             out.print("password:"+user1.getPassword());
         }
+        out.print("<br>");
+        out.print(Thread.currentThread().getName());
     }
 }
