@@ -23,6 +23,10 @@ import java.util.Set;
         String[] parameterValues = request.getParameterValues("name");
         String value = request.getParameter("name");
 
+    request.setRequestDispatcher(path).forward(request,response);转发请求
+    request.getRemoteAddr();获取IP
+    request.setCharacterEncoding("UTF-8");设置请求体的字符集为utf-8 解决post请求乱码问题
+
  request对象实际上又称为“请求域”对象：
     应用域对象是什么？
         ServletContext（Servlet上下文对象）
@@ -100,5 +104,7 @@ public class RequestTestServlet extends HttpServlet {
 
         //4.通过name获取value这个一维数组的第一个元素，这个方法使用最多，因为，这个一维数组中一般只有一个元素
         String username = request.getParameter("username");
+        System.out.println(username);
+        this.log(username);
     }
 }
