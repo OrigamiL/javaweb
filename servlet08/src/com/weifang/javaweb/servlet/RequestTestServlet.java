@@ -26,10 +26,10 @@ import java.util.Set;
     request.setRequestDispatcher(path).forward(request,response);转发请求
     request.getRemoteAddr();获取IP
     request.setCharacterEncoding("UTF-8");设置请求体的字符集为utf-8 解决post请求乱码问题 Tomcat10之后不需要
-    String contextPath = request.getContextPath();动态获取应用的根路径     /servlet08
-    String requestURI = request.getRequestURI();   获取请求的URI         /servlet08/request
-    String servletPath = request.getServletPath();   获取servlet path   /request
-    String method = request.getMethod();   获取请求的方式  /POST
+    String contextPath = request.getContextPath();   动态获取应用的根路径     /servlet08
+    String requestURI = request.getRequestURI();     获取请求的URI          /servlet08/request
+    String servletPath = request.getServletPath();   获取servlet path      /request
+    String method = request.getMethod();             获取请求的方式          /POST
 
     response.setContentType("text/html;charset=UTF-8"); 设置响应内容类型设置，解决乱码问题
 
@@ -118,7 +118,10 @@ public class RequestTestServlet extends HttpServlet {
         out.print("<br>");
         out.print(request.getMethod());
         out.print("<br>");
-        out.print(request.getRequestURI()); out.print("<br>");
+        out.print(request.getRequestURI());
+        out.print("<br>");
         out.print("servletPath:"+request.getServletPath());
+        out.print("<br>");
+        out.print("servletName:"+this.getServletName());
     }
 }
