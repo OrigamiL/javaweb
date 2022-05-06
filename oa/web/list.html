@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang='en'><head>
+  <meta charset='UTF-8'>
+  <title>部门列表</title>
+  <script type='text/javascript'>
+      function del (dno) {
+        var ok = confirm('是否删除？');
+        if(ok){
+          window.location.href='/oa.delete?deptno'+dno;
+        }
+    }
+  </script>
+</head>
+<body><h1 align='center'>部门列表</h1><hr>
+<table align='center' border='1px' width='50%'>
+  <tr>
+    <th>序号</th>
+    <th>部门编号</th>
+    <th>部门名称</th>
+    <th>操作</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>10</td>
+    <td>分部中心</td>
+    <td><a href='javascript:void(0)' onclick="del(10)" >删除</a>&nbsp;
+        <a href='/oa/modify?deptno=10'>修改</a>&nbsp;
+        <a href='/oa/detail?deptno=10'>详情</a></td>
+  </tr>
+  </table><a href='add.html' >新增</a></body></html>
