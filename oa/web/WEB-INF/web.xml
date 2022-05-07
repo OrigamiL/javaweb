@@ -5,7 +5,7 @@
          version="5.0">
     <servlet>
         <servlet-name>deptListServlet</servlet-name>
-        <servlet-class>com.weifang.javaweb.servlet.oa.DeptListServlet</servlet-class>
+        <servlet-class>com.weifang.oa.web.action.DeptListServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deptListServlet</servlet-name>
@@ -13,7 +13,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>deptModifyServlet</servlet-name>
-        <servlet-class>com.weifang.javaweb.servlet.oa.DeptModifyServlet</servlet-class>
+        <servlet-class>com.weifang.oa.web.action.DeptModifyServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deptModifyServlet</servlet-name>
@@ -21,7 +21,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>deptSubmitServlet</servlet-name>
-        <servlet-class>com.weifang.javaweb.servlet.oa.DeptSubmitServlet</servlet-class>
+        <servlet-class>com.weifang.oa.web.action.DeptSubmitServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deptSubmitServlet</servlet-name>
@@ -29,7 +29,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>deptDetailServlet</servlet-name>
-        <servlet-class>com.weifang.javaweb.servlet.oa.DeptDetailServlet</servlet-class>
+        <servlet-class>com.weifang.oa.web.action.DeptDetailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deptDetailServlet</servlet-name>
@@ -37,7 +37,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>deptAddServlet</servlet-name>
-        <servlet-class>com.weifang.javaweb.servlet.oa.DeptAddServlet</servlet-class>
+        <servlet-class>com.weifang.oa.web.action.DeptAddServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deptAddServlet</servlet-name>
@@ -45,10 +45,13 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>deptDeleteServlet</servlet-name>
-        <servlet-class>com.weifang.javaweb.servlet.oa.DeptDeleteServlet</servlet-class>
+        <servlet-class>com.weifang.oa.web.action.DeptDeleteServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deptDeleteServlet</servlet-name>
         <url-pattern>/delete</url-pattern>
     </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 </web-app>

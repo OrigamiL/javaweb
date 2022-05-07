@@ -5,7 +5,7 @@
          version="5.0">
     <servlet>
         <servlet-name>configTest</servlet-name>
-        <servlet-class>com.weifang.javaweb.servlet.ConfigTestServlet</servlet-class>
+        <servlet-class>com.weifang.oa.web.ConfigTestServlet</servlet-class>
         <!--这里可以配置Servlet对象的初始化信息-->
         <init-param>
             <param-name>driver</param-name>

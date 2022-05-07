@@ -21,7 +21,7 @@
     </context-param>
     <servlet>
         <servlet-name>list</servlet-name>
-        <servlet-class>com.weifang.javaweb.oa.List</servlet-class>
+        <servlet-class>com.weifang.oa.oa.List</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>list</servlet-name>
