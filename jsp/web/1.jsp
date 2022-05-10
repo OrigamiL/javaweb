@@ -23,9 +23,19 @@
     <%=%> 注意：在=的后面编写要输出的内容
     <%=%> 会被翻译到service方法中的out.print()中
 --%>
-你的名字是<%out.write(name);%>
-你的名字是<%=name%>
-
+你的名字是<%out.write(name+"<br>");%>
+你的名字是<%=name%><br>
+<%="你的名字是"+name+"<br>"%>
+<%=application.getContextPath()+"<br>"%>
+<%=request.getServletPath()+"<br>"%>
+<%=request.getContextPath()   %>//
+<%
+    for (int i = 0; i < 5; i++) {
+        %>
+    i的值为：<%=i%>
+<%
+    }
+%>
 <%--
     Servlet的职责：收集数据。Servlet的强项是逻辑处理，业务处理，然后连接数据库，获取、收集数据
     JSP的职责： 展示数据。JSP的强项是做数据的展示

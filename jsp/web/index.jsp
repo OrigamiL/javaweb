@@ -10,12 +10,17 @@
   System.out.println("hello jsp!");
 %>
 <%--怎么样在JSP中编写java程序：
+      直接编写普通字符串 翻译到service方法中的out.write("这里")
       <%java语句;%>
       在这个符号当中编写的被视为java程序，被翻译到Servlet类的service方法内部
       在service方法中编写的代码是有顺序的，方法体当中的代码要遵循自上而下的顺序依次执行
       不能编写静态代码块，不能套用方法
       <%!java语句;%>
       被翻译到Servlet类中，service方法之外，一般不用，会有线程安全问题
+      <%=%>
+      翻译到service方法内部，翻译为out.print();
+      <%@page %>
+      page指令，通过contentType属性用来设置响应的内容类型
 --%>
 <%--JSP专业注释，不会被翻译到java源代码当中--%>
 <--这种注释属于HTML注释，会被翻译到java源代码当中-->

@@ -11,7 +11,7 @@
     </welcome-file-list>
     <servlet>
         <servlet-name>welcomeServlet</servlet-name>
-        <servlet-class>com.weifang.oa.web.WelcomeServlet</servlet-class>
+        <servlet-class>com.weifang.javaweb.servlet.WelcomeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>welcomeServlet</servlet-name>

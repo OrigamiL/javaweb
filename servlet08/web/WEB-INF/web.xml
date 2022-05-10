@@ -5,7 +5,7 @@
          version="5.0">
     <servlet>
         <servlet-name>requestTestServlet</servlet-name>
-        <servlet-class>com.weifang.oa.web.RequestTestServlet</servlet-class>
+        <servlet-class>com.weifang.javaweb.servlet.RequestTestServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>requestTestServlet</servlet-name>
@@ -13,7 +13,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>aServlet</servlet-name>
-        <servlet-class>com.weifang.oa.web.AServlet</servlet-class>
+        <servlet-class>com.weifang.javaweb.servlet.AServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>aServlet</servlet-name>
@@ -21,7 +21,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>bServlet</servlet-name>
-        <servlet-class>com.weifang.oa.web.BServlet</servlet-class>
+        <servlet-class>com.weifang.javaweb.servlet.BServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>bServlet</servlet-name>

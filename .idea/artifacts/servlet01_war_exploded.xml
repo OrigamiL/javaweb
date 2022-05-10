@@ -2,15 +2,17 @@
   <artifact type="exploded-war" name="servlet01:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/servlet01_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="servlet01/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="servlet01" />
         </element>
         <element id="directory" name="lib">
-          <element id="file-copy" path="$PROJECT_DIR$/../../dev/MySQL/Connector J 8.0/mysql-connector-java-8.0.28.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../Program Files (x86)/MySQL/ConnectorJ8.0/mysql-connector-java-8.0.28.jar" />
         </element>
+        <element id="file-copy" path="$PROJECT_DIR$/servlet01/web/welcome.html" />
+        <element id="file-copy" path="$PROJECT_DIR$/servlet01/web/WEB-INF/web.xml" />
       </element>
+      <element id="javaee-facet-resources" facet="servlet01/web/Web" />
     </root>
   </artifact>
 </component>

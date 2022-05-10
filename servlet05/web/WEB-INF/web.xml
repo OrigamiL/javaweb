@@ -5,7 +5,7 @@
          version="5.0">
     <servlet>
         <servlet-name>getServlet</servlet-name>
-        <servlet-class>com.weifang.oa.web.GetServlet</servlet-class>
+        <servlet-class>com.weifang.javaweb.servlet.GetServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getServlet</servlet-name>
@@ -13,7 +13,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>postServlet</servlet-name>
-        <servlet-class>com.weifang.oa.web.PostServlet</servlet-class>
+        <servlet-class>com.weifang.javaweb.servlet.PostServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>postServlet</servlet-name>
