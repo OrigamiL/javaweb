@@ -1,0 +1,47 @@
+<%@ page import="com.weifang.oa.bean.Dept" %>
+<%@ page import="java.util.List" %>
+<%@page contentType="text/html;charset=UTF-8"%>
+
+<!DOCTYPE html><html lang='en'><head>
+  <meta charset='UTF-8'>
+  <title>部门列表</title>
+  <script type='text/javascript'>
+      function del (dno) {
+        var ok = confirm('是否删除？');
+        if(ok){
+          window.location.href='<%=request.getContextPath()%>/dept/delete?deptno='+dno;
+        }
+    }
+  </script>
+</head>
+<body><h1 align='center'>部门列表</h1><hr>
+<table align='center' border='1px' width='50%'>
+  <tr>
+    <th>序号</th>
+    <th>部门编号</th>
+    <th>部门名称</th>
+    <th>操作</th>
+  </tr>
+  <%
+    List<Dept> deptList = (List<Dept>) request.getAttribute("deptList");
+    int i = 0;
+    for (Dept d :
+            deptList) {
+  %>
+  <tr>
+    <td><%=(++i)%></td>
+    <td><%=d.getDeptno()%></td>
+    <td><%=d.getDname()%></td>
+    <td>
+      <a href='javascript:void(0)' onclick="del(<%=d.getDeptno()%>)" >删除</a>&nbsp;
+      <a href='<%=request.getContextPath()%>/dept/detail?f=modify&deptno=<%=d.getDeptno()%>'>修改</a>&nbsp;
+      <a href='<%=request.getContextPath()%>/dept/detail?f=detail&deptno=<%=d.getDeptno()%>'>详情</a>
+    </td>
+  </tr>
+    <%}
+  %>
+
+  </table>
+<a href='<%=request.getContextPath()%>/add.jsp' >新增</a>
+</body>
+</html>
