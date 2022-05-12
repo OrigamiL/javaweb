@@ -4,11 +4,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>OA系统</title>
+    <title>WELCOME TO USE OA SYSTEM</title>
 </head>
 <body>
 <%String contextPath = request.getContextPath();%>
-<h1>欢迎使用本系统</h1>
-<a href="<%=contextPath%>/dept/list">查看部门列表</a>
+<h1>LOGIN PAGE</h1>
+<%--<a href="<%=contextPath%>/dept/list">查看部门列表</a>--%>
+<hr>
+<form action="<%=contextPath%>/user/login" method="post">
+    username：<input type="text" name="username"/><br>
+    password：<input type="password" name="password"/><br>
+    <input type="submit" value="login"/>
+</form>
 </body>
 </html>
