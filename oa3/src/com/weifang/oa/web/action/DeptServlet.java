@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -26,7 +27,9 @@ public class DeptServlet extends HttpServlet {
 
         String contextPath = request.getContextPath();
         String requestURI = request.getRequestURI();
+        HttpSession session = request.getSession();
 
+        if((boolean)session.getAttribute("login")){
         if((contextPath+"/dept/list").equals(requestURI)){
             doList(request,response);
         }else if((contextPath+"/dept/delete").equals(requestURI)){
@@ -39,7 +42,10 @@ public class DeptServlet extends HttpServlet {
             doModify(request,response);
         }/*else if((contextPath+"/dept/submit").equals(requestURI)){
             doSubmit(request,response);
-        } */
+        } */}
+        else {
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
+        }
     }
 
     private void doModify(HttpServletRequest request, HttpServletResponse response)
