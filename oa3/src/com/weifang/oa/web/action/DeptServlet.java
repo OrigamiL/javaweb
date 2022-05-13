@@ -27,24 +27,31 @@ public class DeptServlet extends HttpServlet {
 
         String contextPath = request.getContextPath();
         String requestURI = request.getRequestURI();
-        HttpSession session = request.getSession();
-
-        if((boolean)session.getAttribute("login")){
-        if((contextPath+"/dept/list").equals(requestURI)){
-            doList(request,response);
-        }else if((contextPath+"/dept/delete").equals(requestURI)){
-            doDel(request,response);
-        }else if((contextPath+"/dept/add").equals(requestURI)){
-            doAdd(request,response);
-        }else if((contextPath+"/dept/detail").equals(requestURI)){
-            doDetail(request,response);
-        }else if((contextPath+"/dept/modify").equals(requestURI)){
-            doModify(request,response);
-        }/*else if((contextPath+"/dept/submit").equals(requestURI)){
+        HttpSession session = request.getSession(false);
+        boolean login = false;
+        if (session != null) {
+            try{
+                login = (boolean) session.getAttribute("login");}
+            catch (Exception e){
+                response.sendRedirect(request.getContextPath() + "/index.jsp");
+            }
+            if (login) {
+                if ((contextPath + "/dept/list").equals(requestURI)) {
+                    doList(request, response);
+                } else if ((contextPath + "/dept/delete").equals(requestURI)) {
+                    doDel(request, response);
+                } else if ((contextPath + "/dept/add").equals(requestURI)) {
+                    doAdd(request, response);
+                } else if ((contextPath + "/dept/detail").equals(requestURI)) {
+                    doDetail(request, response);
+                } else if ((contextPath + "/dept/modify").equals(requestURI)) {
+                    doModify(request, response);
+                }/*else if((contextPath+"/dept/submit").equals(requestURI)){
             doSubmit(request,response);
-        } */}
-        else {
-            response.sendRedirect(request.getContextPath()+"/index.jsp");
+        } */
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
         }
     }
 
@@ -61,13 +68,13 @@ public class DeptServlet extends HttpServlet {
             conn.setAutoCommit(false);
             String sql = "update t_dept set dname = ?,loc = ? where deptno = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1,dname);
-            ps.setString(2,loc);
-            ps.setString(3,deptno);
+            ps.setString(1, dname);
+            ps.setString(2, loc);
+            ps.setString(3, deptno);
             count = ps.executeUpdate();
             conn.commit();
         } catch (SQLException e) {
-            if (conn!=null) {
+            if (conn != null) {
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
@@ -75,14 +82,15 @@ public class DeptServlet extends HttpServlet {
                 }
             }
             e.printStackTrace();
-        }JDBCUtil.close(conn,ps,null);
-        if (count==1) {
-            //request.getRequestDispatcher("/list").forward(request,response);
-            response.sendRedirect(request.getContextPath()+"/dept/list");
         }
-        if (count==0){
+        JDBCUtil.close(conn, ps, null);
+        if (count == 1) {
+            //request.getRequestDispatcher("/list").forward(request,response);
+            response.sendRedirect(request.getContextPath() + "/dept/list");
+        }
+        if (count == 0) {
             //request.getRequestDispatcher("error.html").forward(request,response);
-            response.sendRedirect(request.getContextPath()+"/error.html");
+            response.sendRedirect(request.getContextPath() + "/error.html");
         }
     }
 
@@ -95,21 +103,21 @@ public class DeptServlet extends HttpServlet {
         ResultSet rs = null;
         try {
             conn = JDBCUtil.getConnection();
-            String sql = "select dname,loc from t_dept where deptno = "+deptno+"";
+            String sql = "select dname,loc from t_dept where deptno = " + deptno + "";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 String dname = rs.getString("dname");
                 String loc = rs.getString("loc");
-                Dept dept = new Dept(deptno,dname,loc);
-                request.setAttribute("dept",dept);
+                Dept dept = new Dept(deptno, dname, loc);
+                request.setAttribute("dept", dept);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtil.close(conn,ps,rs);
+        } finally {
+            JDBCUtil.close(conn, ps, rs);
         }
-        request.getRequestDispatcher("/"+f+".jsp").forward(request,response);
+        request.getRequestDispatcher("/" + f + ".jsp").forward(request, response);
     }
 
     private void doAdd(HttpServletRequest request, HttpServletResponse response)
@@ -125,13 +133,13 @@ public class DeptServlet extends HttpServlet {
             conn.setAutoCommit(false);
             String sql = "insert into t_dept values (?,?,?)";
             ps = conn.prepareStatement(sql);
-            ps.setString(1,deptno);
-            ps.setString(2,dname);
-            ps.setString(3,loc);
+            ps.setString(1, deptno);
+            ps.setString(2, dname);
+            ps.setString(3, loc);
             count = ps.executeUpdate();
             conn.commit();
         } catch (SQLException e) {
-            if(conn!=null){
+            if (conn != null) {
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
@@ -139,15 +147,15 @@ public class DeptServlet extends HttpServlet {
                 }
             }
             e.printStackTrace();
-        }finally {
-            JDBCUtil.close(conn,ps,null);
+        } finally {
+            JDBCUtil.close(conn, ps, null);
         }
-        if(count==1)
+        if (count == 1)
             //request.getRequestDispatcher("/list").forward(request,response);
-            response.sendRedirect(request.getContextPath()+"/dept/list");
-        if (count==0)
+            response.sendRedirect(request.getContextPath() + "/dept/list");
+        if (count == 0)
             //request.getRequestDispatcher("/error.html").forward(request,response);
-            response.sendRedirect(request.getContextPath()+"/error.html");
+            response.sendRedirect(request.getContextPath() + "/error.html");
     }
 
     private void doDel(HttpServletRequest request, HttpServletResponse response)
@@ -159,15 +167,15 @@ public class DeptServlet extends HttpServlet {
             conn = JDBCUtil.getConnection();
             String sql = "delete from t_dept where deptno = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1,deptno);
+            ps.setString(1, deptno);
             int i = ps.executeUpdate();
-            if (i==1) {
-                response.sendRedirect(request.getContextPath()+"/dept/list");
+            if (i == 1) {
+                response.sendRedirect(request.getContextPath() + "/dept/list");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtil.close(conn,ps,null);
+        } finally {
+            JDBCUtil.close(conn, ps, null);
         }
     }
 
@@ -182,18 +190,18 @@ public class DeptServlet extends HttpServlet {
             String sql = "select deptno,dname,loc from t_dept";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 String deptno = rs.getString("deptno");
                 String dname = rs.getString("dname");
                 String loc = rs.getString("loc");
-                deptList.add(new Dept(deptno,dname,loc));
+                deptList.add(new Dept(deptno, dname, loc));
             }
-            request.setAttribute("deptList",deptList);
-            request.getRequestDispatcher("/list.jsp").forward(request,response);
+            request.setAttribute("deptList", deptList);
+            request.getRequestDispatcher("/list.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtil.close(conn,ps,rs);
+        } finally {
+            JDBCUtil.close(conn, ps, rs);
         }
     }
 }

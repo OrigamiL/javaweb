@@ -20,5 +20,6 @@ public class TestSessionServlet2 extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.print(name);
+        out.print(session);
     }
 }
