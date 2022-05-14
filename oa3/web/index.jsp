@@ -1,4 +1,5 @@
 <%@page contentType="text/html;charset=UTF-8"%>
+<%--<%@page session="false" %>--%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +8,12 @@
     <title>WELCOME TO USE OA SYSTEM</title>
 </head>
 <body>
-<%String contextPath = request.getContextPath();%>
+<%
+    String contextPath = request.getContextPath();
+    if(session.getAttribute("username")!=null){
+        response.sendRedirect(contextPath + "/dept/list");
+    }
+%>
 <h1>LOGIN PAGE</h1>
 <%--<a href="<%=contextPath%>/dept/list">查看部门列表</a>--%>
 <hr>

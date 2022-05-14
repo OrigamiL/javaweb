@@ -28,14 +28,9 @@ public class DeptServlet extends HttpServlet {
         String contextPath = request.getContextPath();
         String requestURI = request.getRequestURI();
         HttpSession session = request.getSession(false);
-        boolean login = false;
-        if (session != null) {
-            try{
-                login = (boolean) session.getAttribute("login");}
-            catch (Exception e){
-                response.sendRedirect(request.getContextPath() + "/index.jsp");
-            }
-            if (login) {
+        //此处应先验证为否的情况，较好理解逻辑
+        if (session != null &&session.getAttribute("username")!=null) {
+
                 if ((contextPath + "/dept/list").equals(requestURI)) {
                     doList(request, response);
                 } else if ((contextPath + "/dept/delete").equals(requestURI)) {
@@ -49,10 +44,9 @@ public class DeptServlet extends HttpServlet {
                 }/*else if((contextPath+"/dept/submit").equals(requestURI)){
             doSubmit(request,response);
         } */
-            }
-        } else {
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
-        }
+        }else
+        //response.sendRedirect(request.getContextPath() + "/index.jsp");
+        response.sendRedirect(request.getContextPath());
     }
 
     private void doModify(HttpServletRequest request, HttpServletResponse response)

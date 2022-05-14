@@ -14,10 +14,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet("/user/login")
+@WebServlet("/user/*")
 public class UserServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void service(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String contextPath = request.getContextPath();
+        String requestURI = request.getRequestURI();
+        if((contextPath + "/user/login").equals(requestURI)){
+            doLogin(request,response);
+        }else if((contextPath + "/user/logout").equals(requestURI)){
+            doLogout(request,response);
+        }
+    }
+
+    private void doLogin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -42,10 +53,22 @@ public class UserServlet extends HttpServlet {
         }
         if (success){
             HttpSession session = request.getSession();
-            session.setAttribute("login",true);
+            session.setAttribute("username",username);
             response.sendRedirect(request.getContextPath()+"/dept/list");
         }
         else
             response.sendRedirect(request.getContextPath()+"/error.html");
     }
+
+    private void doLogout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();//手动销毁session对象
+            //session.removeAttribute("username");
+            response.sendRedirect(request.getContextPath());
+        }
+    }
+
+
 }

@@ -14,7 +14,13 @@
     }
   </script>
 </head>
-<body><h1 align='center'>部门列表</h1><hr>
+
+
+
+<body><h1 align='center'>部门列表</h1>
+<h3>欢迎<%=session.getAttribute("username")%></h3>
+<a href="<%=request.getContextPath()%>/user/logout">[退出系统]</a>
+<hr>
 <table align='center' border='1px' width='50%'>
   <tr>
     <th>序号</th>
@@ -43,5 +49,6 @@
 
   </table>
 <a href='<%=request.getContextPath()%>/add.jsp' >新增</a>
+
 </body>
 </html>
