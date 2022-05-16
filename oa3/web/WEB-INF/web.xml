@@ -7,4 +7,7 @@
     <session-config>
         <session-timeout>2</session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>welcome</welcome-file>
+    </welcome-file-list>
 </web-app>

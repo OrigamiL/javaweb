@@ -5,10 +5,7 @@ import com.weifang.oa.util.JDBCUtil;
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -27,26 +24,55 @@ public class DeptServlet extends HttpServlet {
 
         String contextPath = request.getContextPath();
         String requestURI = request.getRequestURI();
+       /* String user = null;
+        Cookie[] cookies = request.getCookies();
+        if(cookies==null)
+            response.sendRedirect(request.getContextPath());
+        else{
+            for (Cookie cookie :
+                    cookies) {
+                if (cookie.getName().equals("user")) {
+                    user = cookie.getValue();
+                }
+            }
+        }
+        if (user == null) {
+            response.sendRedirect(request.getContextPath());
+        }else {
+            if ((contextPath + "/dept/list").equals(requestURI)) {
+                doList(request, response);
+            } else if ((contextPath + "/dept/delete").equals(requestURI)) {
+                doDel(request, response);
+            } else if ((contextPath + "/dept/add").equals(requestURI)) {
+                doAdd(request, response);
+            } else if ((contextPath + "/dept/detail").equals(requestURI)) {
+                doDetail(request, response);
+            } else if ((contextPath + "/dept/modify").equals(requestURI)) {
+                doModify(request, response);
+            }
+        }*/
+
+
         HttpSession session = request.getSession(false);
         //此处应先验证为否的情况，较好理解逻辑
-        if (session != null &&session.getAttribute("username")!=null) {
+        if (session != null && session.getAttribute("username") != null) {
 
-                if ((contextPath + "/dept/list").equals(requestURI)) {
-                    doList(request, response);
-                } else if ((contextPath + "/dept/delete").equals(requestURI)) {
-                    doDel(request, response);
-                } else if ((contextPath + "/dept/add").equals(requestURI)) {
-                    doAdd(request, response);
-                } else if ((contextPath + "/dept/detail").equals(requestURI)) {
-                    doDetail(request, response);
-                } else if ((contextPath + "/dept/modify").equals(requestURI)) {
-                    doModify(request, response);
-                }/*else if((contextPath+"/dept/submit").equals(requestURI)){
-            doSubmit(request,response);
-        } */
-        }else
-        //response.sendRedirect(request.getContextPath() + "/index.jsp");
-        response.sendRedirect(request.getContextPath());
+            if ((contextPath + "/dept/list").equals(requestURI)) {
+                doList(request, response);
+            } else if ((contextPath + "/dept/delete").equals(requestURI)) {
+                doDel(request, response);
+            } else if ((contextPath + "/dept/add").equals(requestURI)) {
+                doAdd(request, response);
+            } else if ((contextPath + "/dept/detail").equals(requestURI)) {
+                doDetail(request, response);
+            } else if ((contextPath + "/dept/modify").equals(requestURI)) {
+                doModify(request, response);
+            }//else if((contextPath+"/dept/submit").equals(requestURI)){
+            //   doSubmit(request,response);
+            // }
+        } else
+            //response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath());
     }
 
     private void doModify(HttpServletRequest request, HttpServletResponse response)

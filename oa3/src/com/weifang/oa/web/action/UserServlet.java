@@ -3,10 +3,7 @@ package com.weifang.oa.web.action;
 import com.weifang.oa.util.JDBCUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -32,6 +29,8 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String login = request.getParameter("login");
+
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -51,13 +50,18 @@ public class UserServlet extends HttpServlet {
         }finally {
             JDBCUtil.close(conn,ps,rs);
         }
-        if (success){
+        if (success) {
             HttpSession session = request.getSession();
-            session.setAttribute("username",username);
-            response.sendRedirect(request.getContextPath()+"/dept/list");
-        }
-        else
-            response.sendRedirect(request.getContextPath()+"/error.html");
+            session.setAttribute("username", username);
+            if ("ok".equals(login)) {
+                Cookie cookie = new Cookie("user", username);
+                cookie.setMaxAge(10 * 24 * 60 * 60);
+                cookie.setPath(request.getContextPath());
+                response.addCookie(cookie);
+            }
+            response.sendRedirect(request.getContextPath() + "/dept/list");
+        } else
+            response.sendRedirect(request.getContextPath()+"/loginError.html");
     }
 
     private void doLogout(HttpServletRequest request, HttpServletResponse response)
@@ -66,8 +70,21 @@ public class UserServlet extends HttpServlet {
         if (session != null) {
             session.invalidate();//手动销毁session对象
             //session.removeAttribute("username");
-            response.sendRedirect(request.getContextPath());
         }
+        Cookie[] cookies = request.getCookies();
+        if (cookies!=null) {
+            for (Cookie c :
+                    cookies) {
+                //if(c.getName().equals("user")){
+                    c.setMaxAge(0);
+                    c.setPath(request.getContextPath());
+                    response.addCookie(c);
+               // }
+            }
+            response.sendRedirect(request.getContextPath());
+        }else
+            response.sendRedirect(request.getContextPath()+"/error.html");
+
     }
 
 
