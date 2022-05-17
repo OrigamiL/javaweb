@@ -54,10 +54,14 @@ public class UserServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             if ("ok".equals(login)) {
-                Cookie cookie = new Cookie("user", username);
-                cookie.setMaxAge(10 * 24 * 60 * 60);
-                cookie.setPath(request.getContextPath());
-                response.addCookie(cookie);
+                Cookie cookie1 = new Cookie("user", username);
+                Cookie cookie2 = new Cookie("pwd",password);
+                cookie1.setMaxAge(10 * 24 * 60 * 60);
+                cookie2.setMaxAge(10 * 24 * 60 * 60);
+                cookie1.setPath(request.getContextPath());
+                cookie2.setPath(request.getContextPath());
+                response.addCookie(cookie1);
+                response.addCookie(cookie2);
             }
             response.sendRedirect(request.getContextPath() + "/dept/list");
         } else
