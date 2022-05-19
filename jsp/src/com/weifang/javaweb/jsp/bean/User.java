@@ -60,6 +60,7 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
+        System.out.println("equals方法执行了");
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
