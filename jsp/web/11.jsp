@@ -1,5 +1,4 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.weifang.javaweb.jsp.bean.User" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.weifang.javaweb.jsp.bean.Student" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,8 +14,7 @@
 <%--
     1.引用JSTL标签库对应的jar包
             tomcat10对应的jar包是：jakarta.servlet.jsp.jstl-2.0.0.jar
-                                 taglibs-standard-impl-1.2.5.jar
-                                 taglibs-standard-spec-1.2.5.jar
+                                 jakarta.servlet.jsp.jstl-api-2.0.0.jar
         如何引用JSTL标签库jar包？
         在WEB-INF下新建lib目录，然后将jar包拷贝进去，然后Add lib
         什么需要将jar包放到WEB-INF目录下？ 这个jar包是tomcat服务器没有的
@@ -26,9 +24,9 @@
 --%>
 <%
     List<Student> list = new ArrayList<>();
-    Student student1 = new Student("1","zhangsan");
-    Student student2 = new Student("2","lisi");
-    Student student3 = new Student("3","wangwu");
+    Student student1 = new Student("11","zhangsan");
+    Student student2 = new Student("22","lisi");
+    Student student3 = new Student("33","wangwu");
     list.add(student1);
     list.add(student2);
     list.add(student3);
@@ -38,6 +36,7 @@
 <%--使用java代码--%>
 <%
     List<Student> stuList = (List<Student>)request.getAttribute("stuList");
+
     for (Student s :
             stuList) {
         %>
@@ -46,7 +45,13 @@
 <%
     }
 %>
+<hr>
 <%--使用标签库--%>
-<c:forEach items="" var=""></c:forEach>
+<%--item代表的是要遍历的集合 var代表集合中每一个元素 begin开始 end 结束 step步长--%>
+<%--vatStatus 这个属性表示var的状态对象 这是一个java对象 这个java对象代表了var的状态--%>
+<%--varStatus这个状态对象有count属性 可以直接使用 从1开始 以1递增 主要用于序号--%>
+<c:forEach items="${stuList}" var="s" begin="0" end="${stuList.size()}" step="1" varStatus="stuStatus">
+    编号:${stuStatus.count},no:${s.no},name:${s.name}<br>
+</c:forEach>
 </body>
 </html>

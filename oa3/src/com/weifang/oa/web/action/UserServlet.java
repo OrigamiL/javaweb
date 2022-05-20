@@ -65,7 +65,7 @@ public class UserServlet extends HttpServlet {
             }
             response.sendRedirect(request.getContextPath() + "/dept/list");
         } else
-            response.sendRedirect(request.getContextPath()+"/loginError.html");
+            response.sendRedirect(request.getContextPath()+"/loginError.jsp");
     }
 
     private void doLogout(HttpServletRequest request, HttpServletResponse response)
