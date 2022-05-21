@@ -24,36 +24,21 @@ public class DeptServlet extends HttpServlet {
 
         String contextPath = request.getContextPath();
         String requestURI = request.getRequestURI();
-       /* String user = null;
-        Cookie[] cookies = request.getCookies();
-        if(cookies==null)
-            response.sendRedirect(request.getContextPath());
-        else{
-            for (Cookie cookie :
-                    cookies) {
-                if (cookie.getName().equals("user")) {
-                    user = cookie.getValue();
-                }
-            }
+
+        if ((contextPath + "/dept/list").equals(requestURI)) {
+            doList(request, response);
+        } else if ((contextPath + "/dept/delete").equals(requestURI)) {
+            doDel(request, response);
+        } else if ((contextPath + "/dept/add").equals(requestURI)) {
+            doAdd(request, response);
+        } else if ((contextPath + "/dept/detail").equals(requestURI)) {
+            doDetail(request, response);
+        } else if ((contextPath + "/dept/modify").equals(requestURI)) {
+            doModify(request, response);
         }
-        if (user == null) {
-            response.sendRedirect(request.getContextPath());
-        }else {
-            if ((contextPath + "/dept/list").equals(requestURI)) {
-                doList(request, response);
-            } else if ((contextPath + "/dept/delete").equals(requestURI)) {
-                doDel(request, response);
-            } else if ((contextPath + "/dept/add").equals(requestURI)) {
-                doAdd(request, response);
-            } else if ((contextPath + "/dept/detail").equals(requestURI)) {
-                doDetail(request, response);
-            } else if ((contextPath + "/dept/modify").equals(requestURI)) {
-                doModify(request, response);
-            }
-        }*/
 
 
-        HttpSession session = request.getSession(false);
+/*        HttpSession session = request.getSession(false);
         //此处应先验证为否的情况，较好理解逻辑
         if (session != null && session.getAttribute("username") != null) {
 
@@ -72,7 +57,7 @@ public class DeptServlet extends HttpServlet {
             // }
         } else
             //response.sendRedirect(request.getContextPath() + "/index.jsp");
-            response.sendRedirect(request.getContextPath());
+            response.sendRedirect(request.getContextPath());*/
     }
 
     private void doModify(HttpServletRequest request, HttpServletResponse response)

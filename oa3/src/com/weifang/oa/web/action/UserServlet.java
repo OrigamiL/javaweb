@@ -1,6 +1,7 @@
 package com.weifang.oa.web.action;
 
 import com.weifang.oa.util.JDBCUtil;
+import com.weifang.oa.util.UserUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -31,26 +32,7 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
         String login = request.getParameter("login");
 
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        boolean success = false;
-        try {
-            conn = JDBCUtil.getConnection();
-            String sql = "select * from t_user where username = ? and password = ?";
-            ps = conn.prepareStatement(sql);
-            ps.setString(1,username);
-            ps.setString(2,password);
-            rs = ps.executeQuery();
-            if(rs.next()){
-                success = true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            JDBCUtil.close(conn,ps,rs);
-        }
-        if (success) {
+        if (UserUtil.login(username,password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             if ("ok".equals(login)) {
