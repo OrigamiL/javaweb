@@ -1,5 +1,6 @@
 package com.weifang.oa.web.action;
 
+import com.weifang.oa.bean.User;
 import com.weifang.oa.util.JDBCUtil;
 import com.weifang.oa.util.UserUtil;
 import jakarta.servlet.ServletException;
@@ -37,6 +38,8 @@ public class WelcomeServlet extends HttpServlet {
             }
             if(UserUtil.login(username,password)){
                 session.setAttribute("username",username);
+                User user = new User(username,password);
+                session.setAttribute("user",user);
             }
         }
 

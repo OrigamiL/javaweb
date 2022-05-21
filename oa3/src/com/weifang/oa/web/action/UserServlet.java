@@ -1,5 +1,6 @@
 package com.weifang.oa.web.action;
 
+import com.weifang.oa.bean.User;
 import com.weifang.oa.util.JDBCUtil;
 import com.weifang.oa.util.UserUtil;
 import jakarta.servlet.ServletException;
@@ -35,6 +36,8 @@ public class UserServlet extends HttpServlet {
         if (UserUtil.login(username,password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
+            User user = new User(username,password);
+            session.setAttribute("user",user);
             if ("ok".equals(login)) {
                 Cookie cookie1 = new Cookie("user", username);
                 Cookie cookie2 = new Cookie("pwd",password);

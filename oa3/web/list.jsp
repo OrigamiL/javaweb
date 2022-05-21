@@ -21,7 +21,7 @@
 
 <body>
 <h1 align='center'>部门列表</h1>
-<h3>欢迎${username}
+<h3>欢迎${username} 当前在线人数：${applicationScope.onlineCount}
 </h3>
 <a href="user/logout">[退出系统]</a>
 <hr>
